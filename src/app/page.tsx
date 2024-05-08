@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Head from 'next/head';
 import WeatherDetails from '../components/WeatherDetails';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface WeatherData {
   city_name: string;
@@ -35,12 +37,14 @@ const Home: React.FC = () => {
         if((response.data.data[0])["city_name"])
         setWeatherData(response.data.data[0]);
         else
-        alert("enter valid city name")
+          toast.warn("enter valid city name")
       } catch (error) {
         console.error('Error fetching weather data:', error);
       }
       setIsLoading(false)
     }
+    else
+      toast.warn("enter city name")
   };
 
   return (
@@ -74,6 +78,7 @@ const Home: React.FC = () => {
 
         {(city && weatherData) && <WeatherDetails weatherData={weatherData} />}
       </main>
+      <ToastContainer position='top-center' />
     </div>
   );
 };
