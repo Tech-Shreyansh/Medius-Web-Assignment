@@ -1,11 +1,11 @@
 'use client'
-require('dotenv').config()
 import React, { useState } from 'react';
 import axios from 'axios';
 import Head from 'next/head';
 import WeatherDetails from '../components/WeatherDetails';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Navbar } from '@/components/NavBar';
 
 interface WeatherData {
   city_name: string;
@@ -26,6 +26,7 @@ const Home: React.FC = () => {
   const [city, setCity] = useState<string>('');
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [isLoading, setIsLoading] = useState<Boolean>(false)
+  
   const handleSubmit = async (e: React.FormEvent) => {
     if(city){
       e.preventDefault();
@@ -53,7 +54,7 @@ const Home: React.FC = () => {
         <title>Weather App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+      <Navbar />
       <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
         <h1 className="text-5xl font-bold">Welcome to Weather App</h1>
 
