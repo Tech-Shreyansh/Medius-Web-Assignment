@@ -36,9 +36,11 @@ const Home: React.FC = () => {
           `https://api.weatherbit.io/v2.0/current?&city=${city}&key=${process.env.NEXT_PUBLIC_ApiKey}&include=minutely`
         );
         if((response.data.data[0])["city_name"])
-        setWeatherData(response.data.data[0]);
-        else
+          setWeatherData(response.data.data[0]);
+        else{
           toast.warn("enter valid city name")
+          setWeatherData(null)
+        }
       } catch (error) {
         console.error('Error fetching weather data:', error);
       }
