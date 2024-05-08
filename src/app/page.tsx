@@ -68,7 +68,7 @@ const Home: React.FC = () => {
             placeholder="Enter City"
             className="p-3 mr-2 text-black border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
             value={city}
-            onChange={(e) => setCity(e.target.value)}
+            onChange={(e) => {setWeatherData(null);setCity(e.target.value)}}
           />
           <button
             type="submit"
